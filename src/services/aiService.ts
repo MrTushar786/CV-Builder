@@ -131,4 +131,37 @@ export class AIService {
       return certification;
     }
   }
+
+  async generateText(prompt: string): Promise<string> {
+    try {
+      const response = await fetch('https://api.perplexity.ai/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'llama-3.1-sonar-small-128k-online',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are a professional CV writing assistant. Be precise and concise.'
+            },
+            {
+              role: 'user',
+              content: prompt
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 300,
+        }),
+      });
+
+      const data: PerplexityResponse = await response.json();
+      return data.choices[0]?.message?.content || '';
+    } catch (error) {
+      console.error('Error generating text:', error);
+      return '';
+    }
+  }
 }

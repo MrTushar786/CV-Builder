@@ -39,6 +39,17 @@ export interface Language {
   proficiency: string;
 }
 
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  startDate?: string;
+  endDate?: string;
+  url?: string;
+  github?: string;
+}
+
 export interface CVData {
   personalInfo: PersonalInfo;
   workExperience: WorkExperience[];
@@ -46,4 +57,5 @@ export interface CVData {
   education: Education[];
   certifications: Certification[];
   languages: Language[];
+  projects: Project[];
 }

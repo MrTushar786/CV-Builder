@@ -184,6 +184,56 @@ export const CVPreview = ({ data }: CVPreviewProps) => {
                 </div>
               )}
 
+              {/* Projects */}
+              {data.projects.length > 0 && (
+                <div>
+                  <h3 className="text-xl font-bold text-cv-blue mb-4 uppercase tracking-wide">
+                    Projects
+                  </h3>
+                  <div className="space-y-4">
+                    {data.projects.map((project) => (
+                      <div key={project.id}>
+                        <div className="flex justify-between items-start mb-2">
+                          <h4 className="font-bold text-cv-heading">{project.title}</h4>
+                          {(project.startDate || project.endDate) && (
+                            <span className="text-xs text-cv-text italic">
+                              {project.startDate && new Date(project.startDate + '-01').toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                              {project.startDate && project.endDate && ' - '}
+                              {project.endDate && new Date(project.endDate + '-01').toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                            </span>
+                          )}
+                        </div>
+                        
+                        {project.description && (
+                          <p className="text-sm text-cv-text mb-2 leading-relaxed">{project.description}</p>
+                        )}
+                        
+                        {project.technologies.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mb-2">
+                            {project.technologies.map((tech, techIndex) => (
+                              <Badge key={techIndex} className="bg-cv-blue-light text-cv-blue border-cv-blue/20 text-xs px-2 py-0.5">
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        )}
+                        
+                        {(project.url || project.github) && (
+                          <div className="space-y-1 text-xs">
+                            {project.url && (
+                              <div className="text-cv-blue">Live: {project.url}</div>
+                            )}
+                            {project.github && (
+                              <div className="text-cv-blue">GitHub: {project.github}</div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Languages */}
               {data.languages.length > 0 && (
                 <div>

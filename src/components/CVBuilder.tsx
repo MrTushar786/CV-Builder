@@ -7,6 +7,7 @@ import { SkillsForm } from './forms/SkillsForm';
 import { EducationForm } from './forms/EducationForm';
 import { CertificationsForm } from './forms/CertificationsForm';
 import { LanguagesForm } from './forms/LanguagesForm';
+import { ProjectsForm } from './forms/ProjectsForm';
 import { CVPreview } from './CVPreview';
 import { CVData } from '@/types/cv';
 import { AIService } from '@/services/aiService';
@@ -24,7 +25,8 @@ const initialCVData: CVData = {
   skills: [],
   education: [],
   certifications: [],
-  languages: []
+  languages: [],
+  projects: []
 };
 
 export const CVBuilder = () => {
@@ -51,12 +53,13 @@ export const CVBuilder = () => {
           <div className="space-y-6">
             <Card className="p-6">
               <Tabs defaultValue="personal" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
+                <TabsList className="grid w-full grid-cols-4 lg:grid-cols-7">
                   <TabsTrigger value="personal">Personal</TabsTrigger>
                   <TabsTrigger value="experience">Experience</TabsTrigger>
                   <TabsTrigger value="skills">Skills</TabsTrigger>
                   <TabsTrigger value="education">Education</TabsTrigger>
                   <TabsTrigger value="certifications">Certs</TabsTrigger>
+                  <TabsTrigger value="projects">Projects</TabsTrigger>
                   <TabsTrigger value="languages">Languages</TabsTrigger>
                 </TabsList>
                 
@@ -96,6 +99,14 @@ export const CVBuilder = () => {
                   <CertificationsForm
                     data={cvData.certifications}
                     onChange={(data) => updateCVData('certifications', data)}
+                    aiService={aiService}
+                  />
+                </TabsContent>
+                
+                <TabsContent value="projects" className="mt-6">
+                  <ProjectsForm
+                    data={cvData.projects}
+                    onChange={(data) => updateCVData('projects', data)}
                     aiService={aiService}
                   />
                 </TabsContent>
