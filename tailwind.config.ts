@@ -52,6 +52,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				cv: {
+					blue: 'hsl(var(--cv-blue))',
+					'blue-light': 'hsl(var(--cv-blue-light))',
+					gray: 'hsl(var(--cv-gray))',
+					text: 'hsl(var(--cv-text))',
+					heading: 'hsl(var(--cv-heading))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
